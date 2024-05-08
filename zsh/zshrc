@@ -1,0 +1,77 @@
+#----------------------------------------------------------------------------
+#                                 colors
+#----------------------------------------------------------------------------
+# turn on colors in both output, and completions
+export CLICOLOR=1
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
+
+#----------------------------------------------------------------------------
+#                                   history
+#----------------------------------------------------------------------------
+
+# don't let history files pollute homedir
+# disable less history so it doesn't write .lesshst
+export LESSHISTSIZE=0
+HISTFILE=$HOME/.zsh/var/history
+
+# save a lot of history!
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_expire_dups_first
+setopt hist_ignore_space
+
+# share history across terminals
+setopt inc_append_history
+
+# don't pollute history
+setopt hist_ignore_dups
+
+# allow editing of line after selecting history
+setopt hist_verify
+
+# shortcuts
+alias h='history'
+alias hs='history | grep -i'
+
+#----------------------------------------------------------------------------
+#                               input line
+#----------------------------------------------------------------------------
+
+# allow comments so scripts can be pasted as is
+setopt interactivecomments
+
+# cursor movement
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+
+#----------------------------------------------------------------------------
+#                                  python
+#----------------------------------------------------------------------------
+alias py3='python3'
+
+for plugin in $ZDOTDIR/plugins/*.zsh; do
+  source $plugin
+done
+
+#----------------------------------------------------------------------------
+#                               shortcuts
+#----------------------------------------------------------------------------
+[[ $OSTYPE == linux* ]] && alias ls='ls --group-directories-first'
+alias ll='ls -l'
+alias rm='rm -i'       # always ask before removing a file
+alias mv='mv -i'       # always ask before moving a file onto another file
+alias cp='cp -i'       # always ask before copying a file onto another file
+alias grep='grep --color=auto'
+
+#----------------------------------------------------------------------------
+#                             Search History
+#----------------------------------------------------------------------------
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
+
+PATH=$HOME/bin:$PATH
+
+# vi: set tabstop=2 shiftwidth=2 filetype=sh expandtab:
