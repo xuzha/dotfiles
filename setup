@@ -2,6 +2,7 @@
 
 DOTFILES=$HOME/.dotfiles
 mkdir -p $DOTFILES
+cp -r ./* $DOTFILES/*
 
 setup_link() {
   SOURCE=$DOTFILES/$1
