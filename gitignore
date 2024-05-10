@@ -22,12 +22,12 @@ test-splits/
 
 # IDEA
 # ----
-!/.idea
+#!/.idea
 /.idea/*
-!/.idea/codeStyles
-!/.idea/inspectionProfiles
-!/.idea/icon.png
-!/.idea/icon_dark.png
+#!/.idea/codeStyles
+#!/.idea/inspectionProfiles
+#!/.idea/icon.png
+#!/.idea/icon_dark.png
 */**/.idea
 */**/.shelf
 .shelf
@@ -45,30 +45,9 @@ test-splits/
 /gradle.ipr
 /gradle.iws
 
-# Eclipse
-# -------
-*.classpath
-*.project
-*.settings
-/bin
-/subprojects/*/bin
-atlassian-ide-plugin.xml
-.metadata/
-
-# NetBeans
-# --------
-.nb-gradle
-.nb-gradle-properties
-
 # Vim
 # ---
 *.sw[nop]
-
-# Emacs
-# -----
-*~
-\#*\#
-.\#*
 
 # Textmate
 # --------
@@ -78,10 +57,6 @@ atlassian-ide-plugin.xml
 # ------------
 *.sublime-*
 
-# jEnv
-# ----
-.java-version
-
 # macOS
 # ----
 .DS_Store
@@ -89,11 +64,6 @@ atlassian-ide-plugin.xml
 # HPROF
 # -----
 *.hprof
-
-# Work dirs
-# ---------
-/incoming-distributions
-/intTestHomeDir
 
 # Logs
 # ----
@@ -106,10 +76,6 @@ atlassian-ide-plugin.xml
 
 # oh-my-zsh gradle plugin
 .gradletasknamecache
-
-# Added GE support maven support to the maven build in .teamcity, per the GE docs, this dir is NOT to be committed
-.teamcity/.mvn/.gradle-enterprise/
-/discoclient.properties
 
 # Ignore local configuration files for asdf, allowing the JDK to be configured for project (https://asdf-vm.com)
 .tool-versions
