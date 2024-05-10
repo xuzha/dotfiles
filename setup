@@ -1,0 +1,54 @@
+#!/usr/bin/env zsh
+
+DOTFILES=$HOME/.dotfiles
+mkdir -p $DOTFILES
+
+setup_link() {
+  SOURCE=$DOTFILES/$1
+  DEST=$HOME/$2
+  if [ -L "$DEST" ]; then
+    rm -f $DEST
+  fi 
+  echo "$SOURCE -> $DEST"
+  ln -s $SOURCE $DEST
+}
+
+setup_link "zsh/zshrc"                          ".zshrc"
+
+mkdir -p $HOME/.zsh
+mkdir -p $HOME/.zsh/var/
+mkdir -p $HOME/.zsh/plugins/
+setup_link "zsh/p10k.zsh"                       ".zsh/p10k.zsh"
+
+#for ZSH_PLUGIN in $DOTFILES/zsh/plugins/*; do
+#  NAME=$(basename $ZSH_PLUGIN)
+#  setup_link "zsh/plugins/$NAME"                ".zsh/plugins/$NAME"
+#done
+
+## tbd
+mkdir -p $HOME/.vim
+for VIMFILE in $DOTFILES/vim/*; do
+  NAME=$(basename $VIMFILE)
+  setup_link "vim/$NAME"                        ".vim/$NAME"
+done
+
+#[ ! -d $HOME/.git ] && mkdir $HOME/.git
+#setup_link "git/config"                         ".gitconfig"
+#setup_link "git/ignore"                         ".git/ignore"
+#
+#mkdir -p $HOME/bin
+#for bin_script in $DOTFILES/bin/*; do
+#  name=$(basename $bin_script)
+#  setup_link "bin/$name"                        "bin/$name"
+#done
+#for tool in $DOTFILES/tools/*; do
+#  tool_name=$(basename $tool)
+#  for bin_script in $tool/bin/*; do
+#    name=$(basename $bin_script)
+#    setup_link "tools/$tool_name/bin/$name"     "bin/$name"
+#  done
+#done
+
+echo ""
+echo "Config files are setup."
+echo "Run 'reload-config' to re-source zsh config."

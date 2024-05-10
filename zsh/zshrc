@@ -1,3 +1,36 @@
+ZDOTDIR=$HOME/.zsh
+#----------------------------------------------------------------------------
+#                                 zinit
+#----------------------------------------------------------------------------
+### Added by Zinit's installer
+if [[ ! -f $ZDOTDIR/zinit/bin/zinit.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$ZDOTDIR/zinit" && command chmod g-rwX "$ZDOTDIR/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$ZDOTDIR/zinit/bin" && \
+      print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+      print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+declare -A ZINIT
+ZINIT[HOME_DIR]=$ZDOTDIR/zinit
+ZINIT[ZCOMPDUMP_PATH]=$ZDOTDIR/var/zcompdump
+
+source "$ZDOTDIR/zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+#----------------------------------------------------------------------------
+#                          powerlevel10k & Plugins
+#----------------------------------------------------------------------------
+source $ZDOTDIR/p10k.zsh
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
+# Two regular plugins .
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
+
 #----------------------------------------------------------------------------
 #                                 colors
 #----------------------------------------------------------------------------
@@ -52,9 +85,9 @@ bindkey '^e' end-of-line
 #----------------------------------------------------------------------------
 alias py3='python3'
 
-for plugin in $ZDOTDIR/plugins/*.zsh; do
-  source $plugin
-done
+#for plugin in $ZDOTDIR/plugins/*.zsh; do
+#  source $plugin
+#done
 
 #----------------------------------------------------------------------------
 #                               shortcuts
