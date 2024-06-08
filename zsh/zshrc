@@ -105,6 +105,10 @@ alias grep='grep --color=auto'
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
 
+# cmd+left/right
+bindkey "\e[1;9D" backward-word
+bindkey "\e[1;9C" forward-word
+
 PATH=$HOME/bin:$PATH
 
 # vi: set tabstop=2 shiftwidth=2 filetype=sh expandtab:
