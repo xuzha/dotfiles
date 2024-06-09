@@ -109,6 +109,8 @@ bindkey "\e[B" history-beginning-search-forward
 bindkey "\e[1;9D" backward-word
 bindkey "\e[1;9C" forward-word
 
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
 PATH=$HOME/bin:$PATH
 
 # vi: set tabstop=2 shiftwidth=2 filetype=sh expandtab:
